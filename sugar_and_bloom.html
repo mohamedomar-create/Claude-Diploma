@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sugar &amp; Bloom — Handcrafted Cakes</title>
+  <meta name="description" content="Sugar & Bloom boutique bakery — handcrafted cakes for life's sweetest moments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fff8f3;
+      --blush: #f7d6d0;
+      --rose: #d9707f;
+      --rose-dark: #b9505f;
+      --berry: #7a2e45;
+      --cocoa: #4a2c2a;
+      --text: #3d2b2b;
+      --muted: #8a6f6f;
+      --sage: #a8bfa3;
+      --gold: #d8a657;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(122, 46, 69, 0.12);
+      --radius: 18px;
+      --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+      --sans: "Lato", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: var(--rose-dark); }
+    h1, h2, h3 { font-family: var(--serif); color: var(--berry); line-height: 1.2; }
+
+    .container { width: min(1120px, 100% - 32px); margin-inline: auto; }
+    section { padding: 96px 0; }
+    .section-head { text-align: center; max-width: 620px; margin: 0 auto 48px; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose-dark);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 12px; }
+    .section-head p { color: var(--muted); font-size: 1.05rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 30px;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+    .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .btn-primary { background: var(--rose); color: var(--white); box-shadow: 0 8px 20px rgba(217, 112, 127, 0.35); }
+    .btn-primary:hover { background: var(--rose-dark); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--berry); border-color: var(--berry); }
+    .btn-outline:hover { background: var(--berry); color: var(--white); transform: translateY(-2px); }
+    .btn-ghost { background: none; border: none; color: var(--muted); padding: 10px 14px; }
+    .btn-ghost:hover { color: var(--berry); }
+
+    /* ---------- Navigation ---------- */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nav.scrolled { background: rgba(255, 248, 243, 0.95); box-shadow: 0 2px 16px rgba(122, 46, 69, 0.1); backdrop-filter: blur(8px); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--berry); text-decoration: none; }
+    .logo span { color: var(--rose); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text); font-weight: 700; font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--rose-dark); }
+    .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--berry); cursor: pointer; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(247, 214, 208, 0.9) 0, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(168, 191, 163, 0.45) 0, transparent 40%),
+        radial-gradient(circle at 80% 10%, rgba(216, 166, 87, 0.25) 0, transparent 35%),
+        var(--cream);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+    .hero h1 { font-size: clamp(3rem, 8vw, 5.5rem); margin-bottom: 16px; letter-spacing: -0.01em; }
+    .hero h1 .amp { color: var(--rose); font-style: italic; }
+    .tagline { font-family: var(--serif); font-style: italic; font-size: clamp(1.25rem, 2.6vw, 1.75rem); color: var(--cocoa); margin-bottom: 18px; }
+    .hero-sub { color: var(--muted); font-size: 1.1rem; max-width: 480px; margin-bottom: 34px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 40px; color: var(--muted); font-size: 0.92rem; }
+    .hero-badges strong { display: block; font-family: var(--serif); font-size: 1.6rem; color: var(--berry); }
+    .hero-art { position: relative; display: flex; justify-content: center; }
+    .hero-art svg { width: min(420px, 100%); filter: drop-shadow(0 25px 35px rgba(122, 46, 69, 0.2)); animation: float 6s ease-in-out infinite; }
+    .petal { position: absolute; border-radius: 60% 0 60% 0; background: var(--blush); opacity: 0.8; animation: drift 9s ease-in-out infinite; }
+    .petal.p1 { width: 26px; height: 26px; top: 8%; left: 10%; }
+    .petal.p2 { width: 18px; height: 18px; top: 70%; left: 4%; background: var(--rose); opacity: 0.4; animation-delay: -3s; }
+    .petal.p3 { width: 22px; height: 22px; top: 18%; right: 6%; background: var(--sage); opacity: 0.6; animation-delay: -5s; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(10px, -18px) rotate(40deg); } }
+
+    /* ---------- Quiz ---------- */
+    .quiz-section { background: var(--white); }
+    .quiz-card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--cream);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 44px clamp(20px, 5vw, 56px);
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; min-height: 40px; }
+    .quiz-step { font-size: 0.85rem; color: var(--muted); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .progress { height: 8px; background: var(--blush); border-radius: 999px; overflow: hidden; margin-bottom: 34px; }
+    .progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--rose), var(--berry)); border-radius: 999px; transition: width 0.5s cubic-bezier(.6,.05,.3,1); }
+    .quiz-stage { position: relative; min-height: 300px; }
+    .quiz-panel { transition: opacity 0.35s ease, transform 0.35s ease; }
+    .quiz-panel.leaving { opacity: 0; transform: translateX(-40px); }
+    .quiz-panel.leaving.back { transform: translateX(40px); }
+    .quiz-panel.entering { opacity: 0; transform: translateX(40px); }
+    .quiz-panel.entering.back { transform: translateX(-40px); }
+    .quiz-question { font-size: clamp(1.6rem, 3.5vw, 2.1rem); text-align: center; margin-bottom: 30px; }
+    .options { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+    .option {
+      background: var(--white);
+      border: 2px solid var(--blush);
+      border-radius: var(--radius);
+      padding: 22px 14px;
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .option .icon { font-size: 2rem; line-height: 1; }
+    .option:hover { transform: translateY(-4px); border-color: var(--rose); box-shadow: 0 10px 22px rgba(217, 112, 127, 0.2); }
+    .option:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .option.selected { background: var(--rose); border-color: var(--rose); color: var(--white); transform: scale(0.97); }
+
+    .result { text-align: center; }
+    .result-art { width: 170px; margin: 0 auto 18px; }
+    .result .eyebrow { margin-bottom: 6px; }
+    .result h3 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 10px; }
+    .result-desc { color: var(--muted); max-width: 520px; margin: 0 auto 22px; }
+    .result-details { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 26px; }
+    .chip { background: var(--white); border: 1px solid var(--blush); border-radius: 999px; padding: 8px 16px; font-size: 0.92rem; }
+    .chip strong { color: var(--berry); }
+    .result-note { font-style: italic; color: var(--cocoa); margin-bottom: 26px; }
+    .result-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+    /* ---------- Menu ---------- */
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+    .cake-card {
+      background: var(--white);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cake-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(122, 46, 69, 0.18); }
+    .cake-card.highlight { box-shadow: 0 0 0 4px var(--rose), var(--shadow); }
+    .cake-visual { height: 210px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .cake-visual svg { height: 170px; width: auto; transition: transform 0.4s ease; }
+    .cake-card:hover .cake-visual svg { transform: scale(1.06) rotate(-2deg); }
+    .tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--berry);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+    .cake-body { padding: 24px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+    .cake-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+    .cake-title h3 { font-size: 1.35rem; }
+    .price { font-family: var(--serif); font-size: 1.3rem; color: var(--rose-dark); font-weight: 700; white-space: nowrap; }
+    .price small { font-family: var(--sans); font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+    .cake-body p { color: var(--muted); font-size: 0.97rem; flex: 1; margin-bottom: 18px; }
+    .cake-meta { font-size: 0.85rem; color: var(--cocoa); margin-bottom: 18px; }
+    .cake-body .btn { align-self: flex-start; padding: 10px 22px; font-size: 0.92rem; }
+    .menu-note { text-align: center; color: var(--muted); margin-top: 36px; font-size: 0.95rem; }
+
+    /* ---------- Reviews ---------- */
+    .reviews-section { background: linear-gradient(180deg, var(--blush) 0%, var(--cream) 100%); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; }
+    .review {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 34px 30px 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .review::before {
+      content: "\201C";
+      position: absolute;
+      top: -6px;
+      right: 22px;
+      font-family: var(--serif);
+      font-size: 6rem;
+      color: var(--blush);
+      line-height: 1;
+    }
+    .stars { color: var(--gold); letter-spacing: 3px; font-size: 1.1rem; margin-bottom: 14px; }
+    .review blockquote { font-family: var(--serif); font-style: italic; font-size: 1.12rem; color: var(--cocoa); margin-bottom: 20px; position: relative; }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: var(--white); }
+    .reviewer strong { display: block; color: var(--berry); }
+    .reviewer span { font-size: 0.85rem; color: var(--muted); }
+
+    /* ---------- Contact / Order ---------- */
+    .contact-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; align-items: start; }
+    .contact-info { background: var(--berry); color: var(--cream); border-radius: 24px; padding: 40px 34px; box-shadow: var(--shadow); }
+    .contact-info h3 { color: var(--white); font-size: 1.7rem; margin-bottom: 12px; }
+    .contact-info > p { color: rgba(255, 248, 243, 0.8); margin-bottom: 28px; }
+    .info-list { list-style: none; display: grid; gap: 20px; }
+    .info-list li { display: flex; gap: 14px; align-items: flex-start; }
+    .info-list .ico { font-size: 1.3rem; line-height: 1.4; }
+    .info-list strong { display: block; color: var(--white); }
+    .info-list span, .info-list a { color: rgba(255, 248, 243, 0.85); text-decoration: none; }
+    .info-list a:hover { color: var(--white); text-decoration: underline; }
+
+    .order-form { background: var(--white); border-radius: 24px; padding: 40px clamp(20px, 4vw, 40px); box-shadow: var(--shadow); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .field label { font-weight: 700; font-size: 0.92rem; color: var(--cocoa); }
+    .field label .req { color: var(--rose-dark); }
+    .field input, .field select, .field textarea {
+      font-family: var(--sans);
+      font-size: 1rem;
+      padding: 13px 15px;
+      border: 2px solid var(--blush);
+      border-radius: 12px;
+      background: var(--cream);
+      color: var(--text);
+      transition: border-color 0.2s ease, background 0.2s ease;
+      width: 100%;
+    }
+    .field textarea { min-height: 110px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--rose); background: var(--white); }
+    .field.invalid input, .field.invalid select { border-color: #c0392b; }
+    .error { color: #c0392b; font-size: 0.82rem; min-height: 0; display: none; }
+    .field.invalid .error { display: block; }
+    .form-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 6px; }
+    .form-foot small { color: var(--muted); }
+
+    .success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+      animation: pop 0.5s ease;
+    }
+    .success .big { font-size: 3.5rem; margin-bottom: 10px; }
+    .success h3 { font-size: 1.9rem; margin-bottom: 10px; }
+    .success p { color: var(--muted); margin-bottom: 8px; }
+    .summary { background: var(--cream); border-radius: 14px; padding: 18px 22px; text-align: left; margin: 20px auto; max-width: 440px; font-size: 0.95rem; }
+    .summary div { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; border-bottom: 1px dashed var(--blush); }
+    .summary div:last-child { border-bottom: none; }
+    .summary span:first-child { color: var(--muted); }
+    .summary span:last-child { font-weight: 700; text-align: right; }
+    @keyframes pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* ---------- Footer ---------- */
+    footer { background: var(--cocoa); color: rgba(255, 248, 243, 0.75); padding: 40px 0; text-align: center; font-size: 0.92rem; }
+    footer .logo { color: var(--white); display: inline-block; margin-bottom: 6px; }
+
+    /* ---------- Reveal on scroll ---------- */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .hero-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { text-align: center; }
+      .hero-sub { margin-inline: auto; }
+      .hero-actions, .hero-badges { justify-content: center; }
+      .hero-art { order: -1; }
+      .hero-art svg { width: min(260px, 70%); }
+    }
+    @media (max-width: 720px) {
+      section { padding: 72px 0; }
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--cream);
+        box-shadow: 0 10px 20px rgba(122, 46, 69, 0.12);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .nav-links.open { max-height: 320px; }
+      .nav-links a { display: block; padding: 14px 24px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .options { grid-template-columns: 1fr 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="logo">Sugar <span>&amp;</span> Bloom</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#quiz">Cake Finder</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#order">Order</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="top">
+    <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span>
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Boutique Bakery</span>
+        <h1>Sugar <span class="amp">&amp;</span> Bloom</h1>
+        <p class="tagline">Handcrafted cakes for life's sweetest moments</p>
+        <p class="hero-sub">Every cake is baked from scratch, decorated by hand, and finished with fresh blooms — made just for you and the people you love.</p>
+        <div class="hero-actions">
+          <a href="#quiz" class="btn btn-primary">Find Your Perfect Cake</a>
+          <a href="#menu" class="btn btn-outline">View the Menu</a>
+        </div>
+        <div class="hero-badges">
+          <div><strong>100%</strong>Made from scratch</div>
+          <div><strong>4.9&#9733;</strong>Customer rating</div>
+          <div><strong>48h</strong>Order lead time</div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="200" cy="392" rx="170" ry="18" fill="#e9c5bd"/>
+          <rect x="40" y="375" width="320" height="14" rx="7" fill="#d8a657"/>
+          <path d="M60 375 L60 270 Q200 250 340 270 L340 375 Z" fill="#f7d6d0"/>
+          <path d="M60 270 Q200 250 340 270 L340 292 Q320 310 300 292 Q280 310 260 292 Q240 310 220 292 Q200 310 180 292 Q160 310 140 292 Q120 310 100 292 Q80 310 60 292 Z" fill="#fff8f3"/>
+          <path d="M100 270 L100 175 Q200 158 300 175 L300 268 Q200 252 100 270 Z" fill="#fbe7e3"/>
+          <path d="M100 175 Q200 158 300 175 L300 194 Q285 208 270 194 Q255 208 240 194 Q225 208 210 194 Q195 208 180 194 Q165 208 150 194 Q135 208 120 194 Q110 204 100 194 Z" fill="#fff8f3"/>
+          <path d="M140 175 L140 100 Q200 88 260 100 L260 173 Q200 160 140 175 Z" fill="#f7d6d0"/>
+          <path d="M140 100 Q200 88 260 100 L260 116 Q248 128 236 116 Q224 128 212 116 Q200 128 188 116 Q176 128 164 116 Q152 128 140 116 Z" fill="#fff8f3"/>
+          <g transform="translate(200 82)">
+            <circle r="22" fill="#d9707f"/>
+            <circle r="14" fill="#b9505f"/>
+            <circle r="7" fill="#7a2e45"/>
+            <ellipse cx="-30" cy="10" rx="16" ry="7" fill="#a8bfa3" transform="rotate(-25 -30 10)"/>
+            <ellipse cx="30" cy="10" rx="16" ry="7" fill="#a8bfa3" transform="rotate(25 30 10)"/>
+          </g>
+          <circle cx="110" cy="240" r="12" fill="#d9707f"/><circle cx="110" cy="240" r="6" fill="#b9505f"/>
+          <circle cx="290" cy="235" r="10" fill="#d8a657"/><circle cx="290" cy="235" r="5" fill="#fff8f3"/>
+          <circle cx="160" cy="340" r="14" fill="#d9707f"/><circle cx="160" cy="340" r="7" fill="#b9505f"/>
+          <circle cx="250" cy="335" r="11" fill="#a8bfa3"/><circle cx="250" cy="335" r="5" fill="#fff8f3"/>
+          <circle cx="205" cy="345" r="9" fill="#d8a657"/>
+          <circle cx="180" cy="145" r="5" fill="#d8a657"/><circle cx="225" cy="140" r="5" fill="#d8a657"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== QUIZ ===================== -->
+    <section class="quiz-section" id="quiz">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Cake Finder</span>
+          <h2>Not sure what to choose?</h2>
+          <p>Answer three quick questions and we'll recommend the perfect cake for your moment.</p>
+        </div>
+
+        <div class="quiz-card reveal" aria-live="polite">
+          <div class="quiz-top">
+            <button class="btn btn-ghost" id="quizBack" type="button" style="visibility:hidden">&larr; Back</button>
+            <span class="quiz-step" id="quizStep">Question 1 of 3</span>
+            <span style="width:72px"></span>
+          </div>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div class="quiz-stage">
+            <div class="quiz-panel" id="quizPanel"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MENU ===================== -->
+    <section id="menu">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Our Menu</span>
+          <h2>Signature Cakes</h2>
+          <p>Six house favourites, baked fresh to order. Prices shown are for a 6-inch cake (serves 8–10) unless noted.</p>
+        </div>
+        <div class="menu-grid" id="menuGrid"></div>
+        <p class="menu-note reveal">Larger sizes, tiers, dietary options (gluten-free, vegan) and custom designs are available — just mention it in your order.</p>
+      </div>
+    </section>
+
+    <!-- ===================== REVIEWS ===================== -->
+    <section class="reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Kind Words</span>
+          <h2>Loved by our customers</h2>
+          <p>A few notes from the people who made their moments sweeter with us.</p>
+        </div>
+        <div class="reviews-grid">
+          <article class="review reveal">
+            <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Our wedding cake was an absolute dream. Guests are still talking about the lemon elderflower layers — and it looked even better than the sketch!"</blockquote>
+            <div class="reviewer">
+              <div class="avatar" style="background:#d9707f">SL</div>
+              <div><strong>Sarah &amp; Liam</strong><span>Wedding, June</span></div>
+            </div>
+          </article>
+          <article class="review reveal">
+            <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"I ordered the Midnight Velvet for my daughter's 10th birthday. Rich, moist, and not too sweet. She asked if we could have it again next year already!"</blockquote>
+            <div class="reviewer">
+              <div class="avatar" style="background:#7a2e45">NA</div>
+              <div><strong>Nadia A.</strong><span>Birthday celebration</span></div>
+            </div>
+          </article>
+          <article class="review reveal">
+            <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Picked up a Ruby Red Velvet 'just because' and it turned an ordinary Tuesday into a celebration. The cream cheese frosting is heavenly."</blockquote>
+            <div class="reviewer">
+              <div class="avatar" style="background:#a8bfa3">JM</div>
+              <div><strong>James M.</strong><span>Just because</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT / ORDER ===================== -->
+    <section id="order">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Place an Order</span>
+          <h2>Let's bake something beautiful</h2>
+          <p>Tell us about your celebration and we'll be in touch within one business day to confirm the details.</p>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-info reveal">
+            <h3>Visit or say hello</h3>
+            <p>We love hearing about your plans. Drop by the shop, call, or send us a note.</p>
+            <ul class="info-list">
+              <li><span class="ico">&#128205;</span><div><strong>Our Shop</strong><span>123 Blossom Lane, Suite 2<br>Your City</span></div></li>
+              <li><span class="ico">&#128222;</span><div><strong>Phone</strong><a href="tel:+15551234567">(555) 123-4567</a></div></li>
+              <li><span class="ico">&#9993;&#65039;</span><div><strong>Email</strong><a href="mailto:hello@sugarandbloom.com">hello@sugarandbloom.com</a></div></li>
+              <li><span class="ico">&#128336;</span><div><strong>Hours</strong><span>Tue – Fri: 9am – 6pm<br>Sat: 9am – 4pm<br>Sun – Mon: Closed</span></div></li>
+            </ul>
+          </aside>
+
+          <div class="order-form reveal">
+            <form id="orderForm" novalidate>
+              <div class="form-row">
+                <div class="field" id="f-name">
+                  <label for="name">Full name <span class="req">*</span></label>
+                  <input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Doe" required>
+                  <span class="error">Please enter your name.</span>
+                </div>
+                <div class="field" id="f-email">
+                  <label for="email">Email <span class="req">*</span></label>
+                  <input type="email" id="email" name="email" autocomplete="email" placeholder="jane@example.com" required>
+                  <span class="error">Please enter a valid email address.</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field" id="f-phone">
+                  <label for="phone">Phone <span class="req">*</span></label>
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 000-0000" required>
+                  <span class="error">Please enter a valid phone number.</span>
+                </div>
+                <div class="field" id="f-date">
+                  <label for="date">Date needed <span class="req">*</span></label>
+                  <input type="date" id="date" name="date" required>
+                  <span class="error">Please choose a date at least 2 days from today.</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field" id="f-cake">
+                  <label for="cake">Cake <span class="req">*</span></label>
+                  <select id="cake" name="cake" required>
+                    <option value="">Choose a cake…</option>
+                  </select>
+                  <span class="error">Please choose a cake.</span>
+                </div>
+                <div class="field" id="f-size">
+                  <label for="size">Size</label>
+                  <select id="size" name="size"></select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="message">Message / special requests</label>
+                <textarea id="message" name="message" placeholder="Occasion, inscription, colours, allergies, delivery or pickup…"></textarea>
+              </div>
+              <div class="form-foot">
+                <small>We'll confirm availability and final price before taking payment.</small>
+                <button type="submit" class="btn btn-primary">Send Order Request</button>
+              </div>
+            </form>
+
+            <div class="success" id="success">
+              <div class="big">&#127856;</div>
+              <h3>Thank you, <span id="successName"></span>!</h3>
+              <p>Your order request has been received. We'll reach out within one business day to confirm.</p>
+              <div class="summary" id="summary"></div>
+              <button class="btn btn-outline" id="newOrder" type="button">Place another order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#top" class="logo">Sugar &amp; Bloom</a>
+      <p>Handcrafted cakes for life's sweetest moments</p>
+      <p>&copy; <span id="year"></span> Sugar &amp; Bloom Bakery. Baked with love.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ============================================================
+       DATA — edit cakes, sizes, and prices here
+       ============================================================ */
+    const CAKES = [
+      {
+        id: "midnight",
+        name: "Midnight Velvet Chocolate",
+        flavor: "Chocolate",
+        price: 48,
+        tag: "Best Seller",
+        desc: "Three layers of dark Belgian chocolate sponge, silky ganache, and a whisper of espresso, crowned with chocolate-dipped strawberries.",
+        meta: "Pairs with: birthdays, chocolate lovers",
+        colors: { bg: "#efe1dc", base: "#5b3330", frost: "#7a4740", drip: "#3a201e", top: "#d9707f" }
+      },
+      {
+        id: "vanilla",
+        name: "Classic Vanilla Bloom",
+        flavor: "Vanilla",
+        price: 42,
+        tag: "Timeless",
+        desc: "Madagascar vanilla bean sponge with whipped vanilla buttercream and hand-piped sugar flowers. Simple, elegant, and loved by everyone.",
+        meta: "Pairs with: any occasion, kids' parties",
+        colors: { bg: "#fbf1e4", base: "#fff4e0", frost: "#ffffff", drip: "#f3dcb4", top: "#f2a7b0" }
+      },
+      {
+        id: "redvelvet",
+        name: "Ruby Red Velvet",
+        flavor: "Red Velvet",
+        price: 55,
+        tag: "Romantic",
+        desc: "Tender crimson layers with a hint of cocoa, finished in tangy cream cheese frosting and a scatter of freeze-dried raspberries.",
+        meta: "Pairs with: anniversaries, date nights",
+        colors: { bg: "#f8dfe0", base: "#a8243a", frost: "#fffaf6", drip: "#c33a50", top: "#7a2e45" }
+      },
+      {
+        id: "lemon",
+        name: "Lemon Elderflower Dream",
+        flavor: "Lemon",
+        price: 52,
+        tag: "Fresh & Light",
+        desc: "Zesty lemon sponge soaked in elderflower syrup, layered with lemon curd and Swiss meringue buttercream. Bright as a spring morning.",
+        meta: "Pairs with: garden parties, summer celebrations",
+        colors: { bg: "#fbf3d5", base: "#fff2b8", frost: "#fffdf2", drip: "#f2d45c", top: "#a8bfa3" }
+      },
+      {
+        id: "wedding",
+        name: "Blush Rose Wedding Tier",
+        flavor: "Vanilla",
+        price: 240,
+        priceNote: "3 tiers, serves 50",
+        tag: "Weddings",
+        desc: "A three-tier showpiece of vanilla-rose sponge, raspberry jam, and blush buttercream, cascading with fresh garden roses. Tasting included.",
+        meta: "Pairs with: weddings, vow renewals, grand celebrations",
+        tiers: 3,
+        colors: { bg: "#f7e3e3", base: "#f7d6d0", frost: "#fff8f3", drip: "#f2c1c1", top: "#d9707f" }
+      },
+      {
+        id: "surprise",
+        name: "Baker's Secret Garden",
+        flavor: "Surprise Me",
+        price: 65,
+        tag: "Seasonal Surprise",
+        desc: "Our pastry chef's rotating creation using the best seasonal ingredients — think pistachio & raspberry or salted caramel & pear. Always a delight.",
+        meta: "Pairs with: adventurous taste buds, just because",
+        colors: { bg: "#e5eee2", base: "#c9dbc4", frost: "#fffaf3", drip: "#d8a657", top: "#b9505f" }
+      }
+    ];
+
+    // Size options and how they scale the 6" base price
+    const SIZES = [
+      { id: "6", label: '6" Petite — serves 8–10', mult: 1 },
+      { id: "8", label: '8" Classic — serves 14–18', mult: 1.6 },
+      { id: "2t", label: "2-Tier — serves 25–30", mult: 2.8 },
+      { id: "3t", label: "3-Tier Showpiece — serves 45–55", mult: 4.5 }
+    ];
+
+    /* ============================================================
+       Cake illustration (SVG) generated from each cake's colours
+       ============================================================ */
+    function cakeSVG(c, tiers) {
+      const col = c.colors;
+      tiers = tiers || c.tiers || 1;
+      let parts = "";
+      const plateY = 190;
+      let y = plateY;
+      const widths = [150, 112, 78];
+      const heights = tiers === 1 ? [80] : [62, 52, 44];
+      for (let i = 0; i < tiers; i++) {
+        const w = widths[i], h = heights[i], x = 100 - w / 2;
+        const top = y - h;
+        // body
+        parts += `<rect x="${x}" y="${top}" width="${w}" height="${h}" rx="8" fill="${col.base}"/>`;
+        // frosting band at top with drips
+        let drip = `M${x} ${top + 6} Q${x} ${top} ${x + 6} ${top} L${x + w - 6} ${top} Q${x + w} ${top} ${x + w} ${top + 6} L${x + w} ${top + 16}`;
+        const n = Math.round(w / 18);
+        const step = w / n;
+        for (let k = n; k > 0; k--) {
+          const cx = x + (k - 0.5) * step;
+          const dy = (k % 2 ? 14 : 8);
+          drip += ` Q${x + k * step - step * 0.1} ${top + 16} ${cx + step * 0.25} ${top + 16 + dy * 0.6} Q${cx} ${top + 16 + dy} ${cx - step * 0.25} ${top + 16 + dy * 0.6} Q${x + (k - 1) * step + step * 0.1} ${top + 16} ${x + (k - 1) * step} ${top + 16}`;
+        }
+        drip += " Z";
+        parts += `<path d="${drip}" fill="${col.drip}"/>`;
+        // piping dots along base
+        for (let d = 0; d < Math.floor(w / 14); d++) {
+          parts += `<circle cx="${x + 8 + d * 14}" cy="${y - 3}" r="4" fill="${col.frost}"/>`;
+        }
+        y = top;
+      }
+      // topper bloom + berries
+      parts += `<g transform="translate(100 ${y - 4})">
+        <ellipse cx="-14" cy="2" rx="10" ry="4" fill="#a8bfa3" transform="rotate(-20 -14 2)"/>
+        <ellipse cx="14" cy="2" rx="10" ry="4" fill="#a8bfa3" transform="rotate(20 14 2)"/>
+        <circle r="11" fill="${col.top}"/><circle r="6" fill="${col.frost}" opacity=".55"/><circle r="3" fill="${col.top}"/>
+      </g>`;
+      return `<svg viewBox="0 ${y - 30} 200 ${245 - y}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="100" cy="203" rx="92" ry="9" fill="rgba(0,0,0,.08)"/>
+        <rect x="14" y="${plateY}" width="172" height="9" rx="4.5" fill="#d8a657"/>
+        ${parts}
+      </svg>`;
+    }
+
+    const money = n => "$" + Math.round(n).toLocaleString();
+
+    /* ============================================================
+       MENU rendering
+       ============================================================ */
+    const menuGrid = document.getElementById("menuGrid");
+    menuGrid.innerHTML = CAKES.map(c => `
+      <article class="cake-card reveal" id="cake-${c.id}">
+        <div class="cake-visual" style="background:${c.colors.bg}">
+          <span class="tag">${c.tag}</span>
+          ${cakeSVG(c)}
+        </div>
+        <div class="cake-body">
+          <div class="cake-title">
+            <h3>${c.name}</h3>
+            <span class="price">${money(c.price)}${c.priceNote ? `<br><small>${c.priceNote}</small>` : ""}</span>
+          </div>
+          <p>${c.desc}</p>
+          <div class="cake-meta">${c.meta}</div>
+          <button class="btn btn-outline" type="button" data-order="${c.id}">Order this cake</button>
+        </div>
+      </article>`).join("");
+
+    /* ============================================================
+       QUIZ — one question at a time
+       ============================================================ */
+    const QUESTIONS = [
+      {
+        key: "occasion",
+        text: "What's the occasion?",
+        options: [
+          { value: "Birthday", icon: "🎂" },
+          { value: "Wedding", icon: "💍" },
+          { value: "Anniversary", icon: "💐" },
+          { value: "Just Because", icon: "✨" }
+        ]
+      },
+      {
+        key: "flavor",
+        text: "What flavor are you craving?",
+        options: [
+          { value: "Chocolate", icon: "🍫" },
+          { value: "Vanilla", icon: "🌼" },
+          { value: "Red Velvet", icon: "❤️" },
+          { value: "Lemon", icon: "🍋" },
+          { value: "Surprise Me", icon: "🎁" }
+        ]
+      },
+      {
+        key: "budget",
+        text: "What's your budget?",
+        options: [
+          { value: "Under $50", icon: "🌱" },
+          { value: "$50-$100", icon: "🌷" },
+          { value: "$100-$200", icon: "🌸" },
+          { value: "$200+", icon: "👑" }
+        ]
+      }
+    ];
+
+    const OCCASION_NOTES = {
+      "Birthday": "We'll add a hand-lettered birthday plaque and complimentary candles.",
+      "Wedding": "Includes a complimentary tasting consultation and fresh-flower styling to match your palette.",
+      "Anniversary": "We'll finish it with fresh roses and a personalised message in gold script.",
+      "Just Because": "Life's small moments deserve cake too — we'll add a little bouquet of sugar blooms."
+    };
+
+    // Budget → recommended size
+    const BUDGET_SIZE = {
+      "Under $50": "6",
+      "$50-$100": "8",
+      "$100-$200": "2t",
+      "$200+": "3t"
+    };
+    const BUDGET_CAP = { "Under $50": 50, "$50-$100": 100, "$100-$200": 200, "$200+": Infinity };
+
+    function flavorToCake(flavor) {
+      return {
+        "Chocolate": "midnight",
+        "Vanilla": "vanilla",
+        "Red Velvet": "redvelvet",
+        "Lemon": "lemon",
+        "Surprise Me": "surprise"
+      }[flavor];
+    }
+
+    function recommend(a) {
+      let cake = CAKES.find(c => c.id === flavorToCake(a.flavor));
+      // Wedding with a vanilla (or open) palate and a big budget → the wedding showpiece
+      if (a.occasion === "Wedding" && a.budget === "$200+" && (a.flavor === "Vanilla" || a.flavor === "Surprise Me")) {
+        cake = CAKES.find(c => c.id === "wedding");
+        return { cake, size: SIZES.find(s => s.id === "3t"), price: cake.price };
+      }
+      // Pick the largest size that fits inside the budget, starting from the suggested one
+      let idx = SIZES.findIndex(s => s.id === BUDGET_SIZE[a.budget]);
+      while (idx > 0 && cake.price * SIZES[idx].mult > BUDGET_CAP[a.budget]) idx--;
+      const size = SIZES[idx];
+      return { cake, size, price: cake.price * size.mult };
+    }
+
+    const quizPanel = document.getElementById("quizPanel");
+    const quizStep = document.getElementById("quizStep");
+    const quizBack = document.getElementById("quizBack");
+    const progressBar = document.getElementById("progressBar");
+    const progressEl = document.getElementById("progress");
+    let step = 0;
+    let answers = {};
+    let animating = false;
+
+    function setProgress() {
+      const pct = Math.round((step / QUESTIONS.length) * 100);
+      progressBar.style.width = pct + "%";
+      progressEl.setAttribute("aria-valuenow", pct);
+      quizStep.textContent = step < QUESTIONS.length ? `Question ${step + 1} of ${QUESTIONS.length}` : "Your match";
+      quizBack.style.visibility = step > 0 ? "visible" : "hidden";
+    }
+
+    function questionHTML(q) {
+      return `
+        <h3 class="quiz-question">${q.text}</h3>
+        <div class="options">
+          ${q.options.map(o => `
+            <button type="button" class="option${answers[q.key] === o.value ? " selected" : ""}" data-value="${o.value}">
+              <span class="icon" aria-hidden="true">${o.icon}</span>${o.value}
+            </button>`).join("")}
+        </div>`;
+    }
+
+    function resultHTML() {
+      const r = recommend(answers);
+      const tiers = r.size.id === "3t" ? 3 : r.size.id === "2t" ? 2 : 1;
+      return `
+        <div class="result">
+          <div class="result-art">${cakeSVG(r.cake, tiers)}</div>
+          <span class="eyebrow">Your perfect match</span>
+          <h3>${r.cake.name}</h3>
+          <p class="result-desc">${r.cake.desc}</p>
+          <div class="result-details">
+            <span class="chip">Occasion: <strong>${answers.occasion}</strong></span>
+            <span class="chip">Size: <strong>${r.size.label}</strong></span>
+            <span class="chip">Estimated: <strong>${money(r.price)}</strong></span>
+          </div>
+          <p class="result-note">${OCCASION_NOTES[answers.occasion]}${r.price > BUDGET_CAP[answers.budget] ? " This is our smallest size, so it sits just a little over your budget." : ""}</p>
+          <div class="result-actions">
+            <button type="button" class="btn btn-primary" id="orderMatch">Order This Cake</button>
+            <button type="button" class="btn btn-outline" id="restartQuiz">Start Over</button>
+          </div>
+        </div>`;
+    }
+
+    function render(direction) {
+      const html = step < QUESTIONS.length ? questionHTML(QUESTIONS[step]) : resultHTML();
+      const back = direction === "back";
+      animating = true;
+      quizPanel.classList.add("leaving");
+      quizPanel.classList.toggle("back", back);
+      setTimeout(() => {
+        quizPanel.innerHTML = html;
+        quizPanel.classList.remove("leaving");
+        quizPanel.classList.add("entering");
+        void quizPanel.offsetWidth; // force reflow so the transition plays
+        quizPanel.classList.remove("entering", "back");
+        setProgress();
+        bindPanel();
+        const first = quizPanel.querySelector(".option.selected, .option, .btn");
+        if (first && direction) first.focus({ preventScroll: true });
+        setTimeout(() => { animating = false; }, 350);
+      }, direction ? 300 : 0);
+    }
+
+    function bindPanel() {
+      quizPanel.querySelectorAll(".option").forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (animating) return;
+          quizPanel.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          answers[QUESTIONS[step].key] = btn.dataset.value;
+          animating = true;
+          setTimeout(() => { step++; render("forward"); }, 260);
+        });
+      });
+      const orderBtn = document.getElementById("orderMatch");
+      if (orderBtn) {
+        orderBtn.addEventListener("click", () => {
+          const r = recommend(answers);
+          prefillOrder(r.cake.id, r.size.id, `Occasion: ${answers.occasion}. Found via the Cake Finder quiz.`);
+        });
+      }
+      const restart = document.getElementById("restartQuiz");
+      if (restart) {
+        restart.addEventListener("click", () => {
+          step = 0;
+          answers = {};
+          render("back");
+        });
+      }
+    }
+
+    quizBack.addEventListener("click", () => {
+      if (animating || step === 0) return;
+      step--;
+      render("back");
+    });
+
+    render();
+
+    /* ============================================================
+       ORDER FORM
+       ============================================================ */
+    const form = document.getElementById("orderForm");
+    const cakeSelect = document.getElementById("cake");
+    const sizeSelect = document.getElementById("size");
+    const dateInput = document.getElementById("date");
+
+    cakeSelect.innerHTML += CAKES.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
+
+    function fillSizes(cakeId, chosen) {
+      const cake = CAKES.find(c => c.id === cakeId);
+      if (cake && cake.id === "wedding") {
+        sizeSelect.innerHTML = `<option value="3t">3-Tier Showpiece — serves 45–55 (${money(cake.price)})</option>`;
+        return;
+      }
+      sizeSelect.innerHTML = SIZES.map(s =>
+        `<option value="${s.id}">${s.label}${cake ? " (" + money(cake.price * s.mult) + ")" : ""}</option>`
+      ).join("");
+      if (chosen) sizeSelect.value = chosen;
+    }
+    fillSizes();
+    cakeSelect.addEventListener("change", () => fillSizes(cakeSelect.value, sizeSelect.value));
+
+    // Earliest order date: 2 days from today (48h lead time)
+    function isoDate(d) {
+      const off = d.getTimezoneOffset();
+      return new Date(d.getTime() - off * 60000).toISOString().slice(0, 10);
+    }
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 2);
+    dateInput.min = isoDate(minDate);
+
+    function prefillOrder(cakeId, sizeId, note) {
+      showForm();
+      cakeSelect.value = cakeId;
+      fillSizes(cakeId, sizeId);
+      document.getElementById("f-cake").classList.remove("invalid");
+      if (note) {
+        const msg = document.getElementById("message");
+        if (!msg.value.includes(note)) msg.value = msg.value ? msg.value + "\n" + note : note;
+      }
+      document.querySelectorAll(".cake-card").forEach(c => c.classList.remove("highlight"));
+      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => document.getElementById("name").focus({ preventScroll: true }), 700);
+    }
+
+    menuGrid.addEventListener("click", e => {
+      const btn = e.target.closest("[data-order]");
+      if (btn) prefillOrder(btn.dataset.order);
+    });
+
+    const validators = {
+      name: v => v.trim().length >= 2,
+      email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+      phone: v => v.replace(/\D/g, "").length >= 7,
+      date: v => v && v >= dateInput.min,
+      cake: v => v !== ""
+    };
+
+    function validateField(id) {
+      const el = document.getElementById(id);
+      const ok = validators[id](el.value);
+      document.getElementById("f-" + id).classList.toggle("invalid", !ok);
+      return ok;
+    }
+
+    Object.keys(validators).forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener("blur", () => { if (el.value) validateField(id); });
+      el.addEventListener("input", () => {
+        if (document.getElementById("f-" + id).classList.contains("invalid")) validateField(id);
+      });
+    });
+
+    const escapeHTML = s => s.replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const results = Object.keys(validators).map(validateField);
+      if (results.includes(false)) {
+        const firstBad = form.querySelector(".field.invalid input, .field.invalid select");
+        if (firstBad) firstBad.focus();
+        return;
+      }
+      const data = Object.fromEntries(new FormData(form));
+      const cake = CAKES.find(c => c.id === data.cake);
+      const size = SIZES.find(s => s.id === data.size) || SIZES[3];
+      const price = cake.id === "wedding" ? cake.price : cake.price * size.mult;
+      const when = new Date(data.date + "T12:00:00").toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+
+      document.getElementById("successName").textContent = data.name.trim().split(" ")[0];
+      document.getElementById("summary").innerHTML = `
+        <div><span>Cake</span><span>${escapeHTML(cake.name)}</span></div>
+        <div><span>Size</span><span>${escapeHTML(size.label)}</span></div>
+        <div><span>Date needed</span><span>${escapeHTML(when)}</span></div>
+        <div><span>Estimated price</span><span>${money(price)}</span></div>
+        <div><span>We'll contact you at</span><span>${escapeHTML(data.email.trim())}<br>${escapeHTML(data.phone.trim())}</span></div>`;
+
+      form.style.display = "none";
+      document.getElementById("success").style.display = "block";
+      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+    });
+
+    function showForm() {
+      form.style.display = "";
+      document.getElementById("success").style.display = "none";
+    }
+
+    document.getElementById("newOrder").addEventListener("click", () => {
+      form.reset();
+      fillSizes();
+      form.querySelectorAll(".field.invalid").forEach(f => f.classList.remove("invalid"));
+      showForm();
+    });
+
+    /* ============================================================
+       NAV + scroll effects
+       ============================================================ */
+    const nav = document.getElementById("nav");
+    const navLinks = document.getElementById("navLinks");
+    const navToggle = document.getElementById("navToggle");
+    const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 30);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    navToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", open);
+    });
+    navLinks.addEventListener("click", e => {
+      if (e.target.tagName === "A") {
+        navLinks.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
